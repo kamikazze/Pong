@@ -1,0 +1,7 @@
+class PongBall{
+
+  public PongBall(){
+  
+  }
+
+}
