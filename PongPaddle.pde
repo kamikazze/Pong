@@ -1,0 +1,10 @@
+class PongPaddle{
+
+  public PongPaddle(){
+  
+  }
+
+
+
+
+}

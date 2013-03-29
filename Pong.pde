@@ -22,6 +22,8 @@ String score_left_text;
 PFont font;
 
 PongBall ball;
+PongPaddle leftPaddle;
+PongPaddle rightPaddle;
 
 void setup() {
   size(screen_x, screen_y);
@@ -30,6 +32,8 @@ void setup() {
   font = loadFont("AmericanTypewriter-Light-48.vlw");
   textFont(font);
   ball = new PongBall(max_x/2, max_y/2, ballSize);
+  leftPaddle = new PongPaddle();
+  rightPaddle = new PongPaddle();
 }
 
 
