@@ -4,14 +4,8 @@ int screen_y = 600;
 int max_x = screen_x -1;
 int max_y = screen_y -1;
 float ballSize = 20;
-float widthBat = 20;
-float heightBat = 80;
 String direction = "rechts";
-float positionXLeft= widthBat/2 +2;
-float positionYLeft= heightBat/2 +2;
 String directionR = "up";
-float positionXRight = max_x - widthBat/2 -2;
-float positionYRight = max_y - heightBat/2 -2;
 float rightScore = 0;
 float leftScore = 1;
 int score_right = 0;
@@ -29,11 +23,13 @@ void setup() {
   size(screen_x, screen_y);
   background(255);
   frameRate(25);
+  float paddleSizeX = 200;
+  float paddleSizeY = 500;
   font = loadFont("AmericanTypewriter-Light-48.vlw");
   textFont(font);
   ball = new PongBall(max_x/2, max_y/2, ballSize);
-  leftPaddle = new PongPaddle();
-  rightPaddle = new PongPaddle();
+  leftPaddle = new PongPaddle(paddleSizeX/2 +2, paddleSizeY/2 +2, paddleSizeX, paddleSizeY);
+  rightPaddle = new PongPaddle(max_x - paddleSizeX/2 -2, max_y - paddleSizeY/2 -2, paddleSizeX, paddleSizeY);
 }
 
 
@@ -44,10 +40,8 @@ void draw() {
   fill(225, 240, 140, 128);
 
   ball.draw();
-
-  rect(positionXLeft, positionYLeft, widthBat, heightBat);
-  rectMode(CENTER);
-  rect(positionXRight, positionYRight, widthBat, heightBat);
+  leftPaddle.draw();
+  rightPaddle.draw();
 
 
   // ball berührt rechten oder linken rand
@@ -69,18 +63,21 @@ void draw() {
   } 
 
   // ball berührt den rechten Paddel
-  if (ball.getX() + ballSize/2 >= positionXRight - widthBat/2
-    && ball.getY() + ballSize/2 <= positionYRight + heightBat/2 
-    && ball.getY() - ballSize/2 >= positionYRight - heightBat/2 /*- balleffet*/ ) {
+  if  (ball.getX() + ballSize/2 >= rightPaddle.getX() - rightPaddle.getSizeX()/2
+    && ball.getY() + ballSize/2 <= rightPaddle.getY() + rightPaddle.getSizeY()/2 
+    && ball.getY() - ballSize/2 >= rightPaddle.getY() - rightPaddle.getSizeY()/2 /*- balleffet*/ ) {
     ball.setXDirection(-1);
     // balleffet = dist(ballX, ballY, positionXRight, positionYRight)/2;
   }
 
   //ball berührt den linken Paddel
-  if (ball.getX() - ballSize/2 <= positionXLeft+ widthBat/2
-    && ball.getY() + ballSize/2 <= positionYLeft+ heightBat/2 
-    && ball.getY() - ballSize/2 >= positionYLeft- heightBat/2 /* + balleffet */ ) {
-    ball.setYDirection(1);
+  //linker Ballrand kleiner als rechte Seite von linkem Paddel
+  if  (ball.getX() - ballSize/2 <= leftPaddle.getX() + leftPaddle.getSizeX()/2
+  //Unterkante Ball ist kleiner als Oberkante linkes Paddel
+    && ball.getY() - ballSize/2 <= leftPaddle.getY() + leftPaddle.getSizeY()/2 
+  //Oberkante Ball ist größer als 
+    && ball.getY() + ballSize/2 >= leftPaddle.getY() - leftPaddle.getSizeY()/2 /* + balleffet */ ) {
+    ball.setXDirection(1);
 
     // balleffet = dist(ballX, ballY, positionX, positionY)/2;
     // balleffet = speedX;
@@ -89,30 +86,26 @@ void draw() {
   //ballX = ballX + speedX;
 
   if (keyPressed == true) {
-    if (key == 'w') {
-      positionYLeft+= 10;
-      if (positionYLeft>= max_x) {
-        positionYLeft= max_x - 80;
-      }
-    }
-
     if (key == 's') {
-      positionYLeft-= 10;
-      if (positionYLeft<= 0) {
-        positionYLeft= 0 + 80;
+      if(leftPaddle.getY() <= max_y - leftPaddle.getSizeY()/2){
+        leftPaddle.moveUp();
       }
     }
 
-    if (key == 'o') {
-      positionYRight += 10;
-      if (positionYRight >= max_x) {
-        positionYRight = max_x - 80;
+    if (key == 'w') {
+      if (leftPaddle.getY() >= 0  + leftPaddle.getSizeY()/2) {
+        leftPaddle.moveDown();
       }
     }
+
     if (key == 'k') {
-      positionYRight -= 10;
-      if (positionYRight <= 0) {
-        positionYRight = 0 + 80;
+      if (rightPaddle.getY() <= max_y - rightPaddle.getSizeY()/2) {
+         rightPaddle.moveUp();
+      }
+    }
+    if (key == 'o') {
+      if (rightPaddle.getY() >= 0 + rightPaddle.getSizeY()/2) {
+        rightPaddle.moveDown();
       }
     }
   }
