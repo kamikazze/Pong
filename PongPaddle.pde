@@ -92,7 +92,6 @@ class PongPaddle {
   }  
 
 
-
   public void setX(float x) {
     this.position.x = x;
   }

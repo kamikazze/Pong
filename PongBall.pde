@@ -3,8 +3,7 @@ class PongBall {
 
   private PVector position;
   private float radius = 0;
-  private float speedX = 10;
-  private float speedY = 10;
+  private float speed = 10;
   private int xDirection = 1;
   private int yDirection = 1;
   private float effet = 1;
@@ -31,11 +30,11 @@ class PongBall {
   }
 
   private void updateX() {
-    this.position.x = this.position.x + this.speedX * this.xDirection * this.effet;
+    this.position.x = this.position.x + this.speed * this.xDirection * this.effet;
   }
 
   private void updateY() {
-    this.position.y = this.position.y + this.speedY * this.yDirection * this.effet;
+    this.position.y = this.position.y + this.speed * this.yDirection * this.effet;
   }
 
   public void reverseXDirection() {
@@ -72,14 +71,6 @@ class PongBall {
 
   public float getEffet() {
     return this.effet;
-  }
-
-  public void setSpeedX(float newSpeedX) {
-    this.speedX = newSpeedX;
-  }
-
-  public void setSpeedY(float newSpeedY) {
-    this.speedY = newSpeedY;
   }
 
   public void draw() {
