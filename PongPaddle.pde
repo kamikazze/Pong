@@ -45,7 +45,6 @@ class PongPaddle {
 
   private boolean ballIsWithinXRange(PongBall ball) {
     if (ball.getRightSide() >= this.getLeftSide() && ball.getLeftSide() <= this.getRightSide()) {
-      println("X-Range");
       return true;
     } 
     return false;
