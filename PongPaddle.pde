@@ -1,6 +1,5 @@
 class PongPaddle {
 
-
   private float sizeX;
   private float sizeY;
   private PVector position;
@@ -84,7 +83,7 @@ class PongPaddle {
 
   public boolean ballTouchesRight(PongBall ball) {
     if (this.ballIsWithinYRange(ball)  && this.ballIsWithinXRange(ball)) {
-      if (this.getRightSide() >= ball.getLeftSide() && this.getRightSide() <= ball.getLeftSide()) {
+      if (this.getRightSide() >= ball.getLeftSide() && this.getRightSide() <= ball.getRightSide()) {
         return true;
       }
     }
