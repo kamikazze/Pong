@@ -4,11 +4,11 @@ class PongBall {
   private PVector position;
   private float radius = 0;
   private float speed = 10;
-  private int xDirection = 1;
-  private int yDirection = 1;
+  private PVector direction;
   private float effet = 1;
 
   public PongBall(float ballX, float ballY, float ballSize) {
+    this.direction = new PVector(1,1);
     this.position = new PVector(ballX, ballY);
     this.radius = ballSize /2 ;
   }
@@ -30,19 +30,19 @@ class PongBall {
   }
 
   private void updateX() {
-    this.position.x = this.position.x + this.speed * this.xDirection * this.effet;
+    this.position.x = this.position.x + this.speed * this.direction.x * this.effet;
   }
 
   private void updateY() {
-    this.position.y = this.position.y + this.speed * this.yDirection * this.effet;
+    this.position.y = this.position.y + this.speed * this.direction.y * this.effet;
   }
 
   public void reverseXDirection() {
-    this.xDirection = -this.xDirection;
+    this.direction.x = -this.direction.x;
   }
 
   public void reverseYDirection() {
-    this.yDirection = -this.yDirection;
+    this.direction.y = -this.direction.y;
   }
 
   public void setX(float newX) {
