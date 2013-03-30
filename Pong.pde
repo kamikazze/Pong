@@ -1,6 +1,6 @@
 // testing git again
 int screen_x = 600;
-int screen_y = 600;
+int screen_y = 700;
 int max_x = screen_x -1;
 int max_y = screen_y -1;
 float ballSize = 20;
@@ -27,10 +27,10 @@ void setup() {
   background(255);
   frameRate(25);
   float paddleSizeX = 100;
-  float paddleSizeY = 200;
+  float paddleSizeY = 400;
   font = loadFont("AmericanTypewriter-Light-48.vlw");
   textFont(font);
-  gameArea = new GameArea();
+  gameArea = new GameArea(screen_x, screen_y);
   ball = new PongBall(max_x/2, max_y/2, ballSize);
   leftPaddle = new PongPaddle(paddleSizeX/2 + dist, paddleSizeY/2 +dist, paddleSizeX, paddleSizeY);
   rightPaddle = new PongPaddle(max_x - paddleSizeX/2 -dist, max_y - paddleSizeY/2 -dist, paddleSizeX, paddleSizeY);
@@ -46,25 +46,24 @@ void draw() {
   ball.draw();
   leftPaddle.draw();
   rightPaddle.draw();
-
-
-  // ball berührt rechten oder linken rand
-  if (ball.getX() > max_x - ballSize/2 ) {
+  
+  if(gameArea.ballTouchesRightSide(ball)){
     score_left += 1;
     ball.reverseXDirection();
-  } 
-  else if (ball.getX() < 0 + ballSize/2) {
+  }
+  
+  if(gameArea.ballTouchesLeftSide(ball)){
     score_right += 1;
     ball.reverseXDirection();
   }
-
-  // ball berührt oberen oder unteren Rand
-  if (ball.getY() > max_y - ballSize/2 ) {
-    ball.reverseYDirection();
-  } 
-  else if (ball.getY() < 0 + ballSize/2) {
-    ball.reverseYDirection();
-  } 
+  
+  if(gameArea.ballTouchesUpperSide(ball)){
+     ball.reverseYDirection();
+  }
+  
+  if(gameArea.ballTouchesLowerSide(ball)){
+   ball.reverseYDirection();
+  }
 
   // ball berührt den rechten Paddel
   if (rightPaddle.ballTouchesRight(ball)) {
@@ -93,7 +92,6 @@ void draw() {
   if (leftPaddle.ballTouchesLower(ball)) {
     ball.reverseYDirection();
   }  
-
 
   if (keyPressed == true) {
     if (key == 's') {

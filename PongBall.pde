@@ -3,10 +3,10 @@ class PongBall {
   private float x = 0;
   private float y = 0;
   private float radius = 0;
-  private float speedX = 0.1;
-  private float speedY = 0.1;
-  private int xDirection = 10;
-  private int yDirection = 10;
+  private float speedX = 10;
+  private float speedY = 10;
+  private int xDirection = 1;
+  private int yDirection = 1;
   private float effet = 1;
 
   public PongBall(float ballX, float ballY, float ballSize) {
@@ -61,6 +61,10 @@ class PongBall {
 
   public float getY() {
     return this.y;
+  }
+  
+  public float getRadius(){
+   return this.radius;
   }
 
   public void setEffet(float newEffet) {
