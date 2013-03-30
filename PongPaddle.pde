@@ -16,7 +16,6 @@ class PongPaddle {
 
   public void draw() {
     rectMode(CENTER);
-    println("   " + this.getLeftSide() + ":" + this.getRightSide());
     rect(x, y, sizeX, sizeY);
   }
 

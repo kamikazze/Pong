@@ -123,6 +123,5 @@ void draw() {
 
   text(score_right_text, 500, 50, 100, 75);
   text(score_left_text, 100, 50, 100, 90);
-  println();
 }
 

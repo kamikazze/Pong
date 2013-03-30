@@ -86,7 +86,6 @@ class PongBall {
   public void draw() {
     this.updateY();
     this.updateX();
-    println(this.getLeftSide() + ":" + this.getRightSide());
     ellipse(this.x, this.y, this.radius, this.radius);
   }
 }
