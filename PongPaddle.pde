@@ -3,44 +3,42 @@ class PongPaddle {
 
   private float sizeX;
   private float sizeY;
-  private float x;
-  private float y;
+  private PVector position;
   private float speed = 10;
 
   public PongPaddle(float x, float y, float sizeX, float sizeY) {
-    this.x = x;
-    this.y = y;
+    this.position = new PVector(x, y);
     this.sizeX = sizeX;
     this.sizeY = sizeY;
   }
 
   public void draw() {
     rectMode(CENTER);
-    rect(x, y, sizeX, sizeY);
+    rect(this.position.x, this.position.y, sizeX, sizeY);
   }
 
   private float getUpperSide() {
-    return this.y + this.sizeY/2;
+    return this.position.y + this.sizeY/2;
   }
 
   private float getLowerSide() {
-    return this.y - this.sizeY/2;
+    return this.position.y - this.sizeY/2;
   }
 
   private float getLeftSide() {
-    return this.x - this.sizeX/2;
+    return this.position.x - this.sizeX/2;
   }
 
   private float getRightSide() {
-    return this.x + this.sizeX/2;
+    return this.position.x + this.sizeX/2;
   }
 
   public void moveUp() {
-    this.y += speed;
+    this.position.y += speed;
   }
 
   public void moveDown() {
-    this.y -= speed;
+    this.position.y -= speed;
   }
 
   private boolean ballIsWithinXRange(PongBall ball) {
@@ -96,19 +94,19 @@ class PongPaddle {
 
 
   public void setX(float x) {
-    this.x = x;
+    this.position.x = x;
   }
 
   public float getX() {
-    return this.x;
+    return this.position.x;
   }
 
   public void setY(float y) {
-    this.y = y;
+    this.position.y = y;
   }
 
   public float getY() {
-    return this.y;
+    return this.position.y;
   }
 
   public float getSizeX() {

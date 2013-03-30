@@ -1,7 +1,7 @@
 class PongBall {
 
-  private float x = 0;
-  private float y = 0;
+
+  private PVector position;
   private float radius = 0;
   private float speedX = 10;
   private float speedY = 10;
@@ -10,33 +10,32 @@ class PongBall {
   private float effet = 1;
 
   public PongBall(float ballX, float ballY, float ballSize) {
-    this.x = ballX;
-    this.y = ballY;
+    this.position = new PVector(ballX, ballY);
     this.radius = ballSize /2 ;
   }
 
   public float getLowerSide() {
-    return this.y - this.radius;
+    return this.position.y - this.radius;
   }
 
   public float getUpperSide() {
-    return this.y + this.radius;
+    return this.position.y + this.radius;
   }
 
   public float getRightSide() {
-    return this.x + this.radius;
+    return this.position.x + this.radius;
   }
 
   public float getLeftSide() {
-    return this.x - this.radius;
+    return this.position.x - this.radius;
   }
 
   private void updateX() {
-    this.x = this.x + this.speedX * this.xDirection * this.effet;
+    this.position.x = this.position.x + this.speedX * this.xDirection * this.effet;
   }
 
   private void updateY() {
-    this.y = this.y + this.speedY * this.yDirection * this.effet;
+    this.position.y = this.position.y + this.speedY * this.yDirection * this.effet;
   }
 
   public void reverseXDirection() {
@@ -48,19 +47,19 @@ class PongBall {
   }
 
   public void setX(float newX) {
-    this.x = newX;
+    this.position.x = newX;
   }
 
   public void setY(float newY) {
-    this.y = newY;
+    this.position.y = newY;
   }
 
   public float getX() {
-    return this.x;
+    return this.position.x;
   }
 
   public float getY() {
-    return this.y;
+    return this.position.y;
   }
   
   public float getRadius(){
@@ -86,7 +85,7 @@ class PongBall {
   public void draw() {
     this.updateY();
     this.updateX();
-    ellipse(this.x, this.y, this.radius, this.radius);
+    ellipse(this.position.x, this.position.y, this.radius, this.radius);
   }
 }
 
