@@ -1,16 +1,10 @@
-// testing git again
 int screen_x = 600;
 int screen_y = 700;
 int max_x = screen_x -1;
 int max_y = screen_y -1;
 float ballSize = 20;
-String direction = "rechts";
-String directionR = "up";
-float rightScore = 0;
-float leftScore = 1;
 int score_right = 0;
 int score_left = 0;
-int score_a = 0;
 String score_right_text;
 String score_left_text;
 PFont font;
