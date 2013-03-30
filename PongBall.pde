@@ -29,12 +29,11 @@ class PongBall {
     return this.position.x - this.radius;
   }
 
-  private void updateX() {
-    this.position.x = this.position.x + this.speed * this.direction.x * this.effet;
-  }
-
-  private void updateY() {
-    this.position.y = this.position.y + this.speed * this.direction.y * this.effet;
+  private void updatePosition(){
+    PVector currentDirection = this.direction.get();
+    currentDirection.mult(this.speed);
+    currentDirection.mult(this.effet);
+    this.position.add(currentDirection);
   }
 
   public void reverseXDirection() {
@@ -74,8 +73,7 @@ class PongBall {
   }
 
   public void draw() {
-    this.updateY();
-    this.updateX();
+    this.updatePosition();
     ellipse(this.position.x, this.position.y, this.radius, this.radius);
   }
 }
