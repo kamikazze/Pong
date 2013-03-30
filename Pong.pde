@@ -20,6 +20,7 @@ float dist = 100;
 PongBall ball;
 PongPaddle leftPaddle;
 PongPaddle rightPaddle;
+GameArea gameArea;
 
 void setup() {
   size(screen_x, screen_y);
@@ -29,8 +30,9 @@ void setup() {
   float paddleSizeY = 200;
   font = loadFont("AmericanTypewriter-Light-48.vlw");
   textFont(font);
+  gameArea = new GameArea();
   ball = new PongBall(max_x/2, max_y/2, ballSize);
-  leftPaddle = new PongPaddle(paddleSizeX/2 + dist, paddleSizeY/2 +dist , paddleSizeX, paddleSizeY);
+  leftPaddle = new PongPaddle(paddleSizeX/2 + dist, paddleSizeY/2 +dist, paddleSizeX, paddleSizeY);
   rightPaddle = new PongPaddle(max_x - paddleSizeX/2 -dist, max_y - paddleSizeY/2 -dist, paddleSizeX, paddleSizeY);
 }
 
@@ -65,21 +67,37 @@ void draw() {
   } 
 
   // ball berührt den rechten Paddel
-  if (rightPaddle.ballTouchesRight(ball)) {ball.reverseXDirection();}
-  if (rightPaddle.ballTouchesLeft(ball)) {ball.reverseXDirection();}
-  if (rightPaddle.ballTouchesUpper(ball)) {ball.reverseYDirection();}
-  if (rightPaddle.ballTouchesLower(ball)) {ball.reverseYDirection();}
+  if (rightPaddle.ballTouchesRight(ball)) {
+    ball.reverseXDirection();
+  }
+  if (rightPaddle.ballTouchesLeft(ball)) {
+    ball.reverseXDirection();
+  }
+  if (rightPaddle.ballTouchesUpper(ball)) {
+    ball.reverseYDirection();
+  }
+  if (rightPaddle.ballTouchesLower(ball)) {
+    ball.reverseYDirection();
+  }
 
   // ball berührt den linken Paddel
-  if (leftPaddle.ballTouchesLeft(ball)) {ball.reverseXDirection();}
-  if (leftPaddle.ballTouchesRight(ball)) {ball.reverseXDirection();}
-  if (leftPaddle.ballTouchesUpper(ball)) {ball.reverseYDirection();}
-  if (leftPaddle.ballTouchesLower(ball)) {ball.reverseYDirection();}  
-  
- 
+  if (leftPaddle.ballTouchesLeft(ball)) {
+    ball.reverseXDirection();
+  }
+  if (leftPaddle.ballTouchesRight(ball)) {
+    ball.reverseXDirection();
+  }
+  if (leftPaddle.ballTouchesUpper(ball)) {
+    ball.reverseYDirection();
+  }
+  if (leftPaddle.ballTouchesLower(ball)) {
+    ball.reverseYDirection();
+  }  
+
+
   if (keyPressed == true) {
     if (key == 's') {
-      if(leftPaddle.getY() <= max_y - leftPaddle.getSizeY()/2){
+      if (leftPaddle.getY() <= max_y - leftPaddle.getSizeY()/2) {
         leftPaddle.moveUp();
       }
     }
@@ -92,7 +110,7 @@ void draw() {
 
     if (key == 'k') {
       if (rightPaddle.getY() <= max_y - rightPaddle.getSizeY()/2) {
-         rightPaddle.moveUp();
+        rightPaddle.moveUp();
       }
     }
     if (key == 'o') {

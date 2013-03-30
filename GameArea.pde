@@ -1,0 +1,7 @@
+class GameArea{
+
+  public GameArea(){
+  
+  }
+
+}

@@ -14,36 +14,36 @@ class PongBall {
     this.y = ballY;
     this.radius = ballSize /2 ;
   }
-  
+
   public float getLowerSide() {
     return this.y - this.radius;
   }
-  
-  public float getUpperSide(){
+
+  public float getUpperSide() {
     return this.y + this.radius;
   }
-  
- public float getRightSide(){
-   return this.x + this.radius;
- }
- 
- public float getLeftSide(){
-   return this.x - this.radius;
- }
- 
-  private void updateX(){
+
+  public float getRightSide() {
+    return this.x + this.radius;
+  }
+
+  public float getLeftSide() {
+    return this.x - this.radius;
+  }
+
+  private void updateX() {
     this.x = this.x + this.speedX * this.xDirection * this.effet;
   }
-  
-  private void updateY(){
+
+  private void updateY() {
     this.y = this.y + this.speedY * this.yDirection * this.effet;
   }
-  
-  public void reverseXDirection(){
-   this.xDirection = -this.xDirection;
+
+  public void reverseXDirection() {
+    this.xDirection = -this.xDirection;
   }
-  
-  public void reverseYDirection(){
+
+  public void reverseYDirection() {
     this.yDirection = -this.yDirection;
   }
 
@@ -70,12 +70,12 @@ class PongBall {
   public float getEffet() {
     return this.effet;
   }
-  
-  public void setSpeedX(float newSpeedX){
+
+  public void setSpeedX(float newSpeedX) {
     this.speedX = newSpeedX;
   }
 
-  public void setSpeedY(float newSpeedY){
+  public void setSpeedY(float newSpeedY) {
     this.speedY = newSpeedY;
   }
 
