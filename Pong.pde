@@ -9,7 +9,7 @@ String score_right_text;
 String score_left_text;
 PFont font;
 
-float dist = 100;
+float dist = 10;
 
 PongBall ball;
 PongPaddle leftPaddle;
@@ -20,8 +20,8 @@ void setup() {
   size(screen_x, screen_y);
   background(255);
   frameRate(25);
-  float paddleSizeX = 100;
-  float paddleSizeY = 400;
+  float paddleSizeX = 10;
+  float paddleSizeY = 80;
   font = loadFont("AmericanTypewriter-Light-48.vlw");
   textFont(font);
   gameArea = new GameArea(screen_x, screen_y);
